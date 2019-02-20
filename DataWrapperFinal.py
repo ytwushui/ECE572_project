@@ -45,23 +45,15 @@ class MnistDigitsData(object):
 	def shuffle(self):
 		pass
 	def shuffleNum(self,batch_size):
-		#Get batch_size of non-repeated random number
 		wholeSize = len(self.labelList)
 		shuffleList = random.sample(range(500, wholeSize), batch_size)
-		#print shuffleList
-		#print type(shuffleList[1])
 		return shuffleList
 	def next_batch(self,batch_size):
         # parallel
 		images = np.zeros((batch_size,32,32))
 		labelsList = np.asarray(self.labelList)
-		#print labelsList.shape
 		numList = self.shuffleNum(batch_size)
-		#print numList
-		#print type(numList[1])
 		labels = labelsList[self.count:batch_size+self.count,:]
-		#print labels
-		#labels = []
 		batch_x = np.zeros((batch_size, 32, 32, 1))
 		for i in range(batch_size):
 			k = numList[i]
